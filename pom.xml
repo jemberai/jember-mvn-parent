@@ -7,7 +7,9 @@
 
   <packaging>pom</packaging>
 
+  <name>jember.ai Maven Parent Project</name>
   <description>jember.ai Maven Parent Project</description>
+  <url>https://github.com/jemberai/jember-mvn-parent</url>
 
   <inceptionYear>2024</inceptionYear>
 
@@ -76,8 +78,6 @@
     <name>jember.ai</name>
     <url>https://jember.ai</url>
   </organization>
-
-  <url>https://github.com/jemberai/jember-mvn-parent</url>
 
   <scm>
     <url>https://github.com/jemberai/jember-mvn-parent</url>
