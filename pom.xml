@@ -11,6 +11,20 @@
   <description>jember.ai Maven Parent Project</description>
   <url>https://github.com/jemberai/jember-mvn-parent</url>
 
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <scm>
+    <connection>git@github.com:jemberai/jember-mvn-parent.git</connection>
+    <developerConnection>git@github.com:jemberai/jember-mvn-parent.git</developerConnection>
+    <url>https://github.com/jemberai/jember-mvn-parent</url>
+  </scm>
+
   <inceptionYear>2024</inceptionYear>
 
   <modules>
@@ -80,12 +94,6 @@
     <url>https://jember.ai</url>
   </organization>
 
-  <scm>
-    <url>https://github.com/jemberai/jember-mvn-parent</url>
-    <connection>git@github.com:jemberai/jember-mvn-parent.git</connection>
-    <developerConnection>git@github.com:jemberai/jember-mvn-parent.git</developerConnection>
-  </scm>
-
   <issueManagement>
     <system>Github Issues</system>
     <url>https://github.com/jemberai/jember-mvn-parent/issues</url>
@@ -95,14 +103,6 @@
     <system>GitHub Actions</system>
     <url>https://github.com/jemberai/jember-mvn-parent/actions/new</url>
   </ciManagement>
-
-  <licenses>
-    <license>
-      <name>Apache License, Version 2.0</name>
-      <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
-      <distribution>repo</distribution>
-    </license>
-  </licenses>
 
   <profiles>
     <!-- plugins needed to deploy to Maven Central -->
@@ -213,9 +213,9 @@
       <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
     </repository>
     <snapshotRepository>
-      <id>github</id>
-      <name>GitHub Packages</name>
-      <url>https://maven.pkg.github.com/codecentric/cxf-spring-boot-starter</url>
+      <id>oss.sonatype.org</id>
+      <name>Snapshots</name>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
     </snapshotRepository>
   </distributionManagement>
 
