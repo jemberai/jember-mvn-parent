@@ -10,6 +10,9 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
     name:  deploy
     steps:
       - run: echo "Will start a Maven Central upload with version ${{ github.event.inputs.releaseversion }}"
