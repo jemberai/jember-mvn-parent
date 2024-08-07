@@ -152,6 +152,7 @@
             <executions>
               <execution>
                 <id>attach-sources</id>
+                <phase>package</phase>
                 <goals>
                   <goal>jar</goal>
                 </goals>
@@ -164,6 +165,7 @@
             <version>${maven-javadoc-plugin.version}</version>
             <executions>
               <execution>
+                <phase>package</phase>
                 <id>attach-javadocs</id>
                 <goals>
                   <goal>jar</goal>
