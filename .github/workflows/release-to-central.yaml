@@ -44,6 +44,7 @@ jobs:
             target/*.asc
             target/*.md5
             target/*.sha1
+            .m2/**
 
       - name: Deploy to OSS Sonatype
         env:
@@ -51,7 +52,7 @@ jobs:
           MAVEN_PASSWORD: ${{ secrets.OSS_SONATYPE_PASSWORD }}
           MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
-        run: mvn -X --batch-mode clean deploy --no-transfer-progress -P central-deploy -DskipTests=true
+        run: mvn --batch-mode clean deploy --no-transfer-progress -P central-deploy -DskipTests=true
 
       - name: Generate changelog
         id: changelog
