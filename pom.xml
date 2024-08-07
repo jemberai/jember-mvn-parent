@@ -77,6 +77,8 @@
     <url>https://jember.ai</url>
   </organization>
 
+  <url>https://github.com/jemberai/jember-mvn-parent</url>
+
   <scm>
     <url>https://github.com/jemberai/jember-mvn-parent</url>
     <connection>git@github.com:jemberai/jember-mvn-parent.git</connection>
@@ -137,6 +139,7 @@
           </plugin>
           <plugin>
             <artifactId>maven-deploy-plugin</artifactId>
+            <version>3.1.2</version>
             <configuration>
               <skip>true</skip>
             </configuration>
