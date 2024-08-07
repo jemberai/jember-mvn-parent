@@ -7,7 +7,23 @@
 
   <packaging>pom</packaging>
 
+  <name>jember.ai Maven Parent Project</name>
   <description>jember.ai Maven Parent Project</description>
+  <url>https://github.com/jemberai/jember-mvn-parent</url>
+
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <scm>
+    <connection>git@github.com:jemberai/jember-mvn-parent.git</connection>
+    <developerConnection>git@github.com:jemberai/jember-mvn-parent.git</developerConnection>
+    <url>https://github.com/jemberai/jember-mvn-parent</url>
+  </scm>
 
   <inceptionYear>2024</inceptionYear>
 
@@ -26,10 +42,10 @@
     <maven.compiler.release>${java.version}</maven.compiler.release>
     <maven-gpg-plugin.version>3.2.4</maven-gpg-plugin.version>
     <versions-maven-plugin.version>2.17.1</versions-maven-plugin.version>
-    <flatten-maven-plugin.version>1.6.0</flatten-maven-plugin.version>
     <maven-enforcer-plugin.version>3.5.0</maven-enforcer-plugin.version>
     <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
     <maven-javadoc-plugin.version>3.4.1</maven-javadoc-plugin.version>
+    <nexus-staging-maven-plugin.version>1.7.0</nexus-staging-maven-plugin.version>
   </properties>
 
   <build>
@@ -77,12 +93,6 @@
     <url>https://jember.ai</url>
   </organization>
 
-  <scm>
-    <url>https://github.com/jemberai/jember-mvn-parent</url>
-    <connection>git@github.com:jemberai/jember-mvn-parent.git</connection>
-    <developerConnection>git@github.com:jemberai/jember-mvn-parent.git</developerConnection>
-  </scm>
-
   <issueManagement>
     <system>Github Issues</system>
     <url>https://github.com/jemberai/jember-mvn-parent/issues</url>
@@ -92,14 +102,6 @@
     <system>GitHub Actions</system>
     <url>https://github.com/jemberai/jember-mvn-parent/actions/new</url>
   </ciManagement>
-
-  <licenses>
-    <license>
-      <name>Apache License, Version 2.0</name>
-      <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
-      <distribution>repo</distribution>
-    </license>
-  </licenses>
 
   <profiles>
     <!-- plugins needed to deploy to Maven Central -->
@@ -137,6 +139,7 @@
           </plugin>
           <plugin>
             <artifactId>maven-deploy-plugin</artifactId>
+            <version>3.1.2</version>
             <configuration>
               <skip>true</skip>
             </configuration>
@@ -148,6 +151,7 @@
             <executions>
               <execution>
                 <id>attach-sources</id>
+                <phase>package</phase>
                 <goals>
                   <goal>jar</goal>
                 </goals>
@@ -160,6 +164,7 @@
             <version>${maven-javadoc-plugin.version}</version>
             <executions>
               <execution>
+                <phase>package</phase>
                 <id>attach-javadocs</id>
                 <goals>
                   <goal>jar</goal>
@@ -188,9 +193,9 @@
       <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
     </repository>
     <snapshotRepository>
-      <id>github</id>
-      <name>GitHub Packages</name>
-      <url>https://maven.pkg.github.com/codecentric/cxf-spring-boot-starter</url>
+      <id>oss.sonatype.org</id>
+      <name>Snapshots</name>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
     </snapshotRepository>
   </distributionManagement>
 

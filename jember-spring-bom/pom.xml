@@ -13,8 +13,8 @@
     <packaging>pom</packaging>
 
     <name>jember-bom</name>
-
     <description>Common BOM for jember.ai Java Spring projects</description>
+    <url>https://github.com/jemberai/jember-mvn-parent</url>
 
     <properties>
         <resource.delimiter>@</resource.delimiter> <!-- delimiter that doesn't clash with Spring ${} placeholders -->
