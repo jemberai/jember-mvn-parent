@@ -8,7 +8,7 @@ on: [pull_request]
 
 jobs:
   build_on_pr:
-    name: Push image to quay
+    name: Build On PR
     runs-on: ubuntu-latest
     permissions:
       packages: write
