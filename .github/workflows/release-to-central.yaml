@@ -6,12 +6,6 @@ on:
       - closed
     branches:
       - main
-#  workflow_dispatch:
-#    inputs:
-#      releaseversion:
-#        description: 'Release version'
-#        required: true
-#        default: '0.0.1'
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -73,7 +67,7 @@ jobs:
             	<dependency>
             	    <groupId>org.jemberai</groupId>
             	    <artifactId>jember-mvn-parent</artifactId>
-            	    <version>${{ github.event.inputs.releaseversion }}</version>
+            	    <version>${{ steps.bump.outputs.new_tag }}</version>
             	</dependency>
             </dependencies>
             ```
