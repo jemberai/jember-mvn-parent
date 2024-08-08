@@ -38,8 +38,15 @@ jobs:
           gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
           gpg-passphrase: MAVEN_GPG_PASSPHRASE
 
+      - name: Bump version and push tag
+        id: bump
+        uses: anothrNick/github-tag-action@v1 # Don't use @master or @v1 unless you're happy to test the latest version
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WITH_V: false
+
       - name: Set projects Maven version to GitHub Action GUI set version
-        run: mvn versions:set "-DnewVersion=${{ github.event.inputs.releaseversion }}" --no-transfer-progress
+        run: mvn versions:set "-DnewVersion=${{ github.steps.bump.tag }}" --no-transfer-progress
 
       - name: Deploy to OSS Sonatype
         env:
@@ -48,12 +55,6 @@ jobs:
           MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
         run: mvn --batch-mode clean deploy --no-transfer-progress -P central-deploy -DskipTests=true
-
-      - name: Bump version and push tag
-        uses: anothrNick/github-tag-action@v1 # Don't use @master or @v1 unless you're happy to test the latest version
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          WITH_V: false
 
       - name: Generate changelog
         id: changelog
