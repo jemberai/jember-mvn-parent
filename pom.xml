@@ -180,6 +180,8 @@
             <extensions>true</extensions>
             <configuration>
               <publishingServerId>oss.sonatype.org</publishingServerId>
+              <autoPublish>true</autoPublish>
+              <waitUntil>validated</waitUntil>
             </configuration>
           </plugin>
         </plugins>
