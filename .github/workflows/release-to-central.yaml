@@ -46,7 +46,7 @@ jobs:
           WITH_V: false
 
       - name: Set projects Maven version to GitHub Action GUI set version
-        run: mvn versions:set "-DnewVersion=${{ github.steps.bump.tag }}" --no-transfer-progress
+        run: mvn versions:set "-DnewVersion=${{ github.steps.bump.output.tag }}" --no-transfer-progress
 
       - name: Deploy to OSS Sonatype
         env:
