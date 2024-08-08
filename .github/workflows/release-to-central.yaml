@@ -6,12 +6,6 @@ on:
       - closed
     branches:
       - main
-#  workflow_dispatch:
-#    inputs:
-#      releaseversion:
-#        description: 'Release version'
-#        required: true
-#        default: '0.0.1'
 jobs:
   deploy:
     runs-on: ubuntu-latest
