@@ -81,3 +81,4 @@ jobs:
             ### Things that changed in this release
             ${{ steps.changelog.outputs.changelog }}
           token: ${{ secrets.GITHUB_TOKEN }}
+          tag_name: ${{ steps.bump.outputs.new_tag }}
