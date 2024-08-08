@@ -1,12 +1,17 @@
 name: Deploy New Version
 
 on:
-  workflow_dispatch:
-    inputs:
-      releaseversion:
-        description: 'Release version'
-        required: true
-        default: '0.0.1'
+  pull_request:
+    types:
+      - closed
+    branches:
+      - main
+#  workflow_dispatch:
+#    inputs:
+#      releaseversion:
+#        description: 'Release version'
+#        required: true
+#        default: '0.0.1'
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -43,6 +48,12 @@ jobs:
           MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
         run: mvn --batch-mode clean deploy --no-transfer-progress -P central-deploy -DskipTests=true
+
+      - name: Bump version and push tag
+        uses: anothrNick/github-tag-action@v1 # Don't use @master or @v1 unless you're happy to test the latest version
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WITH_V: false
 
       - name: Generate changelog
         id: changelog
