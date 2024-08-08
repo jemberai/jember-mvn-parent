@@ -52,13 +52,8 @@ jobs:
           myToken: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create GitHub Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ github.event.inputs.releaseversion }}
-          release_name: ${{ github.event.inputs.releaseversion }}
           body: |
             Grab the new version from Maven central https://repo1.maven.org/maven2/org/jemberai/jember-mvn-parent/${{ github.event.inputs.releaseversion }}/ by using it in your deps (also use the newest cxf-spring-boot-starter-maven-plugin https://github.com/codecentric/cxf-spring-boot-starter-maven-plugin):
 
@@ -74,5 +69,4 @@ jobs:
 
             ### Things that changed in this release
             ${{ steps.changelog.outputs.changelog }}
-          draft: false
-          prerelease: false
+          token: ${{ secrets.GITHUB_TOKEN }}
