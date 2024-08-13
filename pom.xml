@@ -45,10 +45,32 @@
     <maven-enforcer-plugin.version>3.5.0</maven-enforcer-plugin.version>
     <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
     <maven-javadoc-plugin.version>3.4.1</maven-javadoc-plugin.version>
+    <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
+    <maven-jar-plugin.version>3.4.2</maven-jar-plugin.version>
+    <maven-resources-plugin.version>3.3.1</maven-resources-plugin.version>
     <nexus-staging-maven-plugin.version>1.7.0</nexus-staging-maven-plugin.version>
   </properties>
 
   <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>${maven-compiler-plugin.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>${maven-jar-plugin.version}</version>
+        </plugin>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-resources-plugin</artifactId>
+            <version>${maven-resources-plugin.version}</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
     <plugins>
       <plugin>
         <artifactId>maven-enforcer-plugin</artifactId>
@@ -102,6 +124,8 @@
     <system>GitHub Actions</system>
     <url>https://github.com/jemberai/jember-mvn-parent/actions/new</url>
   </ciManagement>
+
+
 
   <profiles>
     <!-- plugins needed to deploy to Maven Central -->
