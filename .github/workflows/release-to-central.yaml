@@ -1,9 +1,7 @@
 name: Deploy New Version
 
 on:
-  pull_request:
-    types:
-      - closed
+  push:
     branches:
       - main
 jobs:
@@ -48,7 +46,7 @@ jobs:
           MAVEN_PASSWORD: ${{ secrets.OSS_SONATYPE_PASSWORD }}
           MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
-        run: mvn --batch-mode clean deploy --no-transfer-progress -P central-deploy -DskipTests=true
+        run: mvn --batch-mode clean deploy --no-transfer-progress -P central-deploy -P coverage org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=jemberai_jember-mvn-parent
 
       - name: Generate changelog
         id: changelog
