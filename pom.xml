@@ -35,7 +35,7 @@
     <java.version>21</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <required-maven.version>[3.8.8,)</required-maven.version>
+    <required-maven.version>[3.9.5,)</required-maven.version>
     <required-java.version>[${java.version},)</required-java.version>
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
