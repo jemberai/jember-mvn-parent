@@ -20,8 +20,16 @@
         <resource.delimiter>@</resource.delimiter> <!-- delimiter that doesn't clash with Spring ${} placeholders -->
         <spring-boot.version>3.3.2</spring-boot.version>
         <spring-boot.run.main-class>${start-class}</spring-boot.run.main-class>
+        <awaitility.version>4.2.2</awaitility.version>
+        <cloudevents.version>3.0.0</cloudevents.version>
+        <org.mapstruct.version>1.6.0</org.mapstruct.version>
         <logstash-logback-encoder.version>7.4</logstash-logback-encoder.version>
         <logbook.version>3.9.0</logbook.version>
+        <lombok.version>1.18.34</lombok.version>
+        <opencsv.version>5.9</opencsv.version>
+        <org.testcontainers.milvus.version>1.20.1</org.testcontainers.milvus.version>
+        <org.testcontainers.junit.jupiter.version>1.20.1</org.testcontainers.junit.jupiter.version>
+        <spring-ai.version>1.0.0-M1</spring-ai.version>
     </properties>
 
     <dependencyManagement>
@@ -34,9 +42,80 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <dependency>
+                <groupId>org.springframework.ai</groupId>
+                <artifactId>spring-ai-bom</artifactId>
+                <version>${spring-ai.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.zalando</groupId>
+                <artifactId>logbook-spring-boot-starter</artifactId>
+                <version>${logbook.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.zalando</groupId>
+                <artifactId>logbook-logstash</artifactId>
+                <version>${logbook.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.logstash.logback</groupId>
+                <artifactId>logstash-logback-encoder</artifactId>
+                <version>${logstash-logback-encoder.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.opencsv</groupId>
+                <artifactId>opencsv</artifactId>
+                <version>${opencsv.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.cloudevents</groupId>
+                <artifactId>cloudevents-spring</artifactId>
+                <version>${cloudevents.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.cloudevents</groupId>
+                <artifactId>cloudevents-http-basic</artifactId>
+                <version>${cloudevents.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.cloudevents</groupId>
+                <artifactId>cloudevents-json-jackson</artifactId>
+                <version>${cloudevents.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.cloudevents</groupId>
+                <artifactId>cloudevents-http-restful-ws</artifactId>
+                <version>${cloudevents.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${org.mapstruct.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.awaitility</groupId>
+                <artifactId>awaitility</artifactId>
+                <version>${awaitility.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.testcontainers</groupId>
+                <artifactId>junit-jupiter</artifactId>
+                <version>${org.testcontainers.junit.jupiter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.testcontainers</groupId>
+                <artifactId>milvus</artifactId>
+                <version>${org.testcontainers.milvus.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
-
     <build>
 <!--        stolen from spring boot parent-->
         <resources>
