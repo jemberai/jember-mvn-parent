@@ -7,17 +7,17 @@ concurrency:
 on:
   pull_request:
     types: [opened, synchronize, reopened]
-  paths-ignore:
-    - '**.md'
-    - '.idea/**/*'
-    - '.mvn/**/*'
-    - 'mvnw'
-    - 'mvnw.cmd'
-    - '.vscode/**/*'
-    - '**/.env.example'
-    - '.github/ISSUE_TEMPLATE/**/*'
-    - '.github/CODEOWNERS'
-    - '.github/workflows/**/*'
+    paths-ignore:
+      - '**.md'
+      - '.idea/**/*'
+      - '.mvn/**/*'
+      - 'mvnw'
+      - 'mvnw.cmd'
+      - '.vscode/**/*'
+      - '**/.env.example'
+      - '.github/ISSUE_TEMPLATE/**/*'
+      - '.github/CODEOWNERS'
+      - '.github/workflows/**/*'
 jobs:
   build_on_pr:
     name: Build On PR
