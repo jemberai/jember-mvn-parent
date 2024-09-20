@@ -4,6 +4,17 @@ on:
   push:
     branches:
       - main
+    paths-ignore:
+      - '**.md'
+      - '.idea/**/*'
+      - '.mvn/**/*'
+      - 'mvnw'
+      - 'mvnw.cmd'
+      - '.vscode/**/*'
+      - '**/.env.example'
+      - '.github/ISSUE_TEMPLATE/**/*'
+      - '.github/CODEOWNERS'
+      - '.github/workflows/**/*'
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -40,15 +51,6 @@ jobs:
       - name: Set projects Maven version to GitHub Action GUI set version
         run: mvn versions:set "-DnewVersion=${{ steps.bump.outputs.new_tag }}" --no-transfer-progress
 
-      - name: Deploy to OSS Sonatype
-        env:
-          MAVEN_USERNAME: ${{ secrets.OSS_SONATYPE_USERNAME }}
-          MAVEN_PASSWORD: ${{ secrets.OSS_SONATYPE_PASSWORD }}
-          MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: ./mvnw --batch-mode clean deploy --no-transfer-progress -P central-deploy -P coverage org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=jemberai_jember-mvn-parent
-
       - name: Generate changelog
         id: changelog
         uses: metcalfc/changelog-generator@v4.3.1
@@ -75,3 +77,24 @@ jobs:
             ${{ steps.changelog.outputs.changelog }}
           token: ${{ secrets.GITHUB_TOKEN }}
           tag_name: ${{ steps.bump.outputs.new_tag }}
+
+      - name: Send custom JSON data to Slack workflow
+        id: slack
+        uses: slackapi/slack-github-action@v1.27.0
+        with:
+          payload: |
+            {
+              "text": "GitHub Action build result: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "GitHub Action - Jember Maven Parent Release: ${{ steps.bump.outputs.new_tag }}\n Job Status: ${{ job.status }}\n <https://github.com/jemberai/jember-mvn-parent/releases/tag/${{ steps.bump.outputs.new_tag }}|Release Information>\n\n <${{ github.event.pull_request.html_url || github.event.head_commit.url }}|Commit Ref>"
+                  }
+                }
+              ]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_CICD_WEBHOOK_URL }}
+          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
