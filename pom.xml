@@ -56,8 +56,8 @@
     <nexus-staging-maven-plugin.version>1.7.0</nexus-staging-maven-plugin.version>
     <sonar-maven-plugin.version>4.0.0.4121</sonar-maven-plugin.version>
     <jacoco-maven-plugin.version>0.8.11</jacoco-maven-plugin.version>
-    <maven-surefire-plugin.version>3.3.1</maven-surefire-plugin.version>
-    <maven-failsafe-plugin.version>3.3.1</maven-failsafe-plugin.version>
+    <maven-surefire-plugin.version>3.5.0</maven-surefire-plugin.version>
+    <maven-failsafe-plugin.version>3.5.0</maven-failsafe-plugin.version>
   </properties>
 
   <build>
@@ -133,6 +133,18 @@
                 <requireUpperBoundDeps/>
               </rules>
             </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>integration-test</goal>
+              <goal>verify</goal>
+            </goals>
           </execution>
         </executions>
       </plugin>
